@@ -44,6 +44,22 @@ class CriteriaTest extends TestCase
         $this->assertEqualQueries($basicQuery, $criteriaQuery);
     }
 
+    /** @test */
+    public function criteria_make_correct_sql_with_eloquent_builder()
+    {
+        $param = ['status' => 0, 'name' => 'Reishou'];
+
+        $basicQuery = User::query()
+            ->whereIn('users.status', [$param['status']])
+            ->where('users.name', 'like', '%' . $param['name'] . '%');
+
+        $criteria      = new UserCriteria($param);
+        $criteriaQuery = User::query();
+        $criteria->apply($criteriaQuery);
+
+        $this->assertEqualQueries($basicQuery, $criteriaQuery);
+    }
+
     /**
      * @test
      * @dataProvider provideMeaningfulValue
