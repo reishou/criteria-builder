@@ -1,0 +1,34 @@
+{
+    "name": "reishou/criteria-builder",
+    "description": "Build query with criteria",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Reishou",
+            "email": "reishou90@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^9.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Reishou\\Criteria\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Reishou\\Criteria\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Reishou\\Criteria\\CriteriaServiceProvider"
+            ]
+        }
+    }
+}
