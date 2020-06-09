@@ -102,6 +102,9 @@ $sort->apply($query);
 $query->get();
 ```
 
+`-status` means sort column `status` and order by `desc`
+`name` means sort column `name` and order by `asc` 
+
 ## Testing
 
 Run tests with:
