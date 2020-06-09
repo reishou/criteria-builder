@@ -63,6 +63,45 @@ protected function criteriaStatus($query, $value)
 }
 ```
 
+### Sort options
+
+Beside, we can use `SortOptions` to set some sort rules
+
+```bash
+/GET <URL>/users?sort=-status,name 
+```
+
+Create a class `UserSortOptions` extends `Reishou\Criteria\SortOptions`
+
+```php
+class UserSortOptions extends SortOptions
+{
+    protected $sorts = [
+        'status',
+        'name',
+    ];
+
+    protected $default = [
+        ['status', 'desc'],
+        ['name', 'asc'],
+    ];
+}
+```
+
+`$sorts` is an array that contains fields be sortable.
+
+Use `UserSortOptions` like as using `UserCriteria`
+
+```php
+$param = ['sort' => '-status,name'];
+
+$sort  = new UserSortOptions($param);
+$query = User::query();
+$sort->apply($query);
+
+$query->get();
+```
+
 ## Testing
 
 Run tests with:

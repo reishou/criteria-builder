@@ -60,6 +60,38 @@ class CriteriaTest extends TestCase
         $this->assertEqualQueries($basicQuery, $criteriaQuery);
     }
 
+    /** @test */
+    public function sort_option_make_correct_sql_with_query_builder()
+    {
+        $param = ['sort' => '-name,-status'];
+
+        $basicQuery = DB::table('users')
+            ->orderByDesc('name')
+            ->orderByDesc('status');
+
+        $sort      = new UserSortOptions($param);
+        $sortQuery = DB::table('users');
+        $sort->apply($sortQuery);
+
+        $this->assertEqualQueries($basicQuery, $sortQuery);
+    }
+
+    /** @test */
+    public function sort_option_make_correct_sql_with_eloquent_builder()
+    {
+        $param = ['sort' => '-name,-status'];
+
+        $basicQuery = User::query()
+            ->orderByDesc('name')
+            ->orderByDesc('status');
+
+        $sort      = new UserSortOptions($param);
+        $sortQuery = User::query();
+        $sort->apply($sortQuery);
+
+        $this->assertEqualQueries($basicQuery, $sortQuery);
+    }
+
     /**
      * @test
      * @dataProvider provideMeaningfulValue
