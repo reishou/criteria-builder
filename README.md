@@ -1,5 +1,5 @@
 # CRITERIA BUILDER
-Build criteria builder for Laravel by differently way.
+Build criteria builder for Laravel by different way.
 
 ## Requirements
 * PHP >= 7.0
